@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fun With Controls</string>
+    <string name="hello_world">Hello world, folks!</string>
+    <string name="action_settings">Settings</string>
+    <string name="travel_tips">小提示：下雨天就是要去操場泛舟啊，不然要幹嘛( ´ ▽ ` )ﾉ</string>
+    <string name="action_show_tips">顯示小提示</string>
+
+</resources>
