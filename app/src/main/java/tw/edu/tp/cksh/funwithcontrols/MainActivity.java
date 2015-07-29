@@ -2,18 +2,26 @@ package tw.edu.tp.cksh.funwithcontrols;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PictureDrawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 public class MainActivity extends Activity {
 
-    public final int PICK_IMAGE = 307;
+    public static final int PICK_IMAGE = 307;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,5 +77,32 @@ public class MainActivity extends Activity {
         Intent imagePickerIntent = new Intent(Intent.ACTION_PICK);
         imagePickerIntent.setType("image/*");
         this.startActivityForResult(imagePickerIntent, this.PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case MainActivity.PICK_IMAGE:
+                if (resultCode == RESULT_OK) {
+                    Uri imageUri = data.getData();
+
+                    TextView label = (TextView) this.findViewById(R.id.hello_world_label);
+                    label.setText(imageUri.toString());
+
+                    try {
+                        InputStream stream = this.getContentResolver().openInputStream(imageUri);
+                        Drawable drawable = new BitmapDrawable(getResources(), stream);
+
+                        RelativeLayout layout = (RelativeLayout) this.findViewById(R.id.layout);
+                        layout.setBackground(drawable);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+        }
     }
 }
