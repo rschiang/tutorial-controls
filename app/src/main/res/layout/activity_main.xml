@@ -38,4 +38,11 @@
         android:text="@string/action_show_tips"
         />
 
+    <Button
+        android:id="@+id/show_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/show_tips_button"
+        android:text="@string/action_show_image"/>
+
 </RelativeLayout>

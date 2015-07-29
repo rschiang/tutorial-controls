@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="travel_tips">小提示：下雨天就是要去操場泛舟啊，不然要幹嘛( ´ ▽ ` )ﾉ</string>
     <string name="action_show_tips">顯示小提示</string>
+    <string name="title_activity_show_image">顯示影像</string>
+    <string name="action_show_image">選擇並顯示照片</string>
 
 </resources>

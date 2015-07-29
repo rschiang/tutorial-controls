@@ -1,6 +1,7 @@
 package tw.edu.tp.cksh.funwithcontrols;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    public final int PICK_IMAGE = 307;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 onButtonClick();
+            }
+        });
+
+        Button button2 = (Button) this.findViewById(R.id.show_image_button);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPickImage();
             }
         });
     }
@@ -52,5 +63,11 @@ public class MainActivity extends Activity {
         TextView label = (TextView) this.findViewById(R.id.travel_tips_label);
         label.setVisibility(View.VISIBLE);
         // 這裡會被呼叫喔owo)
+    }
+
+    public void onPickImage() {
+        Intent imagePickerIntent = new Intent(Intent.ACTION_PICK);
+        imagePickerIntent.setType("image/*");
+        this.startActivityForResult(imagePickerIntent, this.PICK_IMAGE);
     }
 }
