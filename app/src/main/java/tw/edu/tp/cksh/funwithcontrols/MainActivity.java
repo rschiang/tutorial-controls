@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
     public void onPickImage() {
         Intent imagePickerIntent = new Intent(Intent.ACTION_PICK);
         imagePickerIntent.setType("image/*");
-        this.startActivityForResult(imagePickerIntent, this.PICK_IMAGE);
+        this.startActivityForResult(imagePickerIntent, MainActivity.PICK_IMAGE);
     }
 
     @Override
@@ -88,19 +88,9 @@ public class MainActivity extends Activity {
                 if (resultCode == RESULT_OK) {
                     Uri imageUri = data.getData();
 
-                    TextView label = (TextView) this.findViewById(R.id.hello_world_label);
-                    label.setText(imageUri.toString());
-
-                    try {
-                        InputStream stream = this.getContentResolver().openInputStream(imageUri);
-                        Drawable drawable = new BitmapDrawable(getResources(), stream);
-
-                        RelativeLayout layout = (RelativeLayout) this.findViewById(R.id.layout);
-                        layout.setBackground(drawable);
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    Intent showImageIntent = new Intent(this, ShowImageActivity.class);
+                    showImageIntent.setData(imageUri);
+                    startActivity(showImageIntent);
                 }
                 break;
         }

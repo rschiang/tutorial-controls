@@ -1,9 +1,19 @@
 package tw.edu.tp.cksh.funwithcontrols;
 
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 public class ShowImageActivity extends ActionBarActivity {
@@ -12,6 +22,12 @@ public class ShowImageActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_image);
+
+        Intent showImageIntent = this.getIntent();
+        Uri imageUri = showImageIntent.getData();
+
+        ImageView imageView = (ImageView) this.findViewById(R.id.image_view);
+        imageView.setImageURI(imageUri);
     }
 
 
